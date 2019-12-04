@@ -20,5 +20,8 @@
     "eslint-plugin-standard": "^4.0.0",
     "jest": "^24.9.0",
     "rimraf": "^3.0.0"
+  },
+  "dependencies": {
+    "babel-parser-utils": "^7.7.4"
   }
 }
