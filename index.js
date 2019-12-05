@@ -1,5 +1,22 @@
 const { Parser, tokTypes: tt } = require('babel-parser-utils')
 
+const getSequenceExpressionNode = expressions => ({
+  type: 'SequenceExpression',
+  expressions: expressions
+})
+
+const getNumericLiteralNode = value => ({
+  type: 'NumericLiteral',
+  value: value
+})
+
+const applySequenceExpression = path => {
+  const { key } = path.node
+  if (key.type === 'ColonSymbolLiteral') {
+    path.node.key = getSequenceExpressionNode([getNumericLiteralNode(0), key])
+  }
+}
+
 class ColonSymbolParser extends Parser {
   parseColonSymbol () {
     const node = this.startNode()
@@ -29,9 +46,16 @@ module.exports = function ({ types: t }) {
   return {
     parserOverride: (code, parserOpts = {}) => {
       const parser = new ColonSymbolParser(parserOpts, code)
-      return parser.parse()
+      const ast = parser.parse()
+      return ast
     },
     visitor: {
+      Program (path) {
+        path.traverse({
+          ClassMethod: applySequenceExpression,
+          ClassProperty: applySequenceExpression
+        })
+      },
       ColonSymbolLiteral (path) {
         path.replaceWith(
           t.callExpression(

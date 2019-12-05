@@ -6,6 +6,7 @@ const plugin = require('../index.js');
 const code = fs.readFileSync(path.join(__dirname, './code.js'), { encoding: 'utf8' });
 
 babel.transform(code, {
+  presets: ['@babel/preset-env'],
   plugins: [
     [plugin, {}]
   ]
