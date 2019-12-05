@@ -1,7 +1,7 @@
 {
   "name": "babel-plugin-syntax-symbol",
-  "version": "0.0.1",
-  "description": "",
+  "version": "0.0.2",
+  "description": "Allow parsing of symbol literals like Ruby",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
