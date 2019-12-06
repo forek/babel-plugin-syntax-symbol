@@ -1,4 +1,17 @@
 const { Parser, tokTypes: tt } = require('babel-parser-utils')
+const { tokTypes: babelParserTokTypes } = require('@babel/parser')
+
+try {
+  for (let i = 0; i < process.argv.length; i++) {
+    const item = process.argv[i]
+    if (item.includes('eslint')) {
+      Object.assign(babelParserTokTypes, tt)
+      break
+    }
+  }
+} catch (error) {
+  console.error(error)
+}
 
 class ColonSymbolParser extends Parser {
   parseColonSymbol () {
