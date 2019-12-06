@@ -1,27 +1,10 @@
 const { Parser, tokTypes: tt } = require('babel-parser-utils')
 
-const getSequenceExpressionNode = expressions => ({
-  type: 'SequenceExpression',
-  expressions: expressions
-})
-
-const getNumericLiteralNode = value => ({
-  type: 'NumericLiteral',
-  value: value
-})
-
-const applySequenceExpression = path => {
-  const { key } = path.node
-  if (key.type === 'ColonSymbolLiteral') {
-    path.node.key = getSequenceExpressionNode([getNumericLiteralNode(0), key])
-  }
-}
-
 class ColonSymbolParser extends Parser {
   parseColonSymbol () {
     const node = this.startNode()
     this.next()
-    if (this.match(tt.name)) {
+    if (this.match(tt.name) || this.match(tt.string)) {
       node.value = this.state.value
       this.next()
       this.finishNode(node, 'ColonSymbolLiteral')
@@ -52,20 +35,18 @@ module.exports = function ({ types: t }) {
     visitor: {
       Program (path) {
         path.traverse({
-          ClassMethod: applySequenceExpression,
-          ClassProperty: applySequenceExpression
+          ColonSymbolLiteral (path) {
+            path.replaceWith(
+              t.callExpression(
+                t.memberExpression(
+                  t.Identifier('Symbol'),
+                  t.Identifier('for')
+                ),
+                [t.stringLiteral(path.node.value)]
+              )
+            )
+          }
         })
-      },
-      ColonSymbolLiteral (path) {
-        path.replaceWith(
-          t.callExpression(
-            t.memberExpression(
-              t.Identifier('Symbol'),
-              t.Identifier('for')
-            ),
-            [t.stringLiteral(path.node.value)]
-          )
-        )
       }
     }
   }

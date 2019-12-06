@@ -2,11 +2,16 @@
 Allow parsing of symbol literals like Ruby!
 
 ## Syntax
-Symbol literals take the form of a colon before the literal.
+Symbol syntax will call `Symbol.for` to create a `JS Symbol Object`. They are generated using the `:name` and `:"string"` literals syntax.
+
 ```javascript
-const foo = :abc
-const baz = { [:def]: true }
-console.log(baz[:def]) // true
+// :name
+const a = :abc
+const b = { [:_def]: true }
+
+// :"string"
+const c = :"+123"
+const d = :'1024'
 ```
 
 ## Install
@@ -28,17 +33,31 @@ npm install --save-dev babel-plugin-syntax-symbol
 in
 ```javascript
 const foo = :abc
+const bar = :'+123'
 const baz = { [:def]: true }
+
+class Example {
+  [:mySymbolKey] () {
+    console.log('hello world')
+  }
+}
 ```
 
 out
 ```javascript
 const foo = Symbol.for("abc")
+const bar = Symbol.for("+123")
 const baz = { [Symbol.for("def")]: true }
+
+class Example {
+  [Symbol.for("mySymbolKey")] () {
+    console.log('hello world')
+  }
+}
 ```
 
 ## Try it out!
-[Demo](https://babeljs.io/repl#?browsers=&build=&builtIns=false&spec=false&loose=false&code_lz=MYewdgzgLgBAZiEMC8MBcBDARsAUKSWLDALxRgG9cYYBtNAEwFM4BdNGKAJwFcmYA_OgAe6dAE9cAX1xA&debug=false&forceAllTransforms=false&shippedProposals=false&circleciRepo=&evaluate=false&fileSize=false&timeTravel=false&sourceType=module&lineWrap=true&presets=es2015%2Cstage-2&prettier=false&targets=&version=7.7.4&externalPlugins=babel-plugin-syntax-symbol%400.0.1)
+[Demo](https://babeljs.io/repl#?browsers=&build=&builtIns=false&spec=false&loose=false&code_lz=MYewdgzgLgBAZiEMC8MBcBDARsAUKSWLDALxRgG9cYYBtNAEwFM4BdNGKAJwFcmYA_OgAe6dAE9cAX1xA&debug=false&forceAllTransforms=false&shippedProposals=false&circleciRepo=&evaluate=false&fileSize=false&timeTravel=false&sourceType=module&lineWrap=true&presets=es2015%2Cstage-2&prettier=false&targets=&version=7.7.4&externalPlugins=babel-plugin-syntax-symbol%400.0.4)
 
 ## Test
 

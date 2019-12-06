@@ -8,3 +8,6 @@ const f = :a
 class A {
   [:foo] () { console.log('foo') }
 }
+
+const g = :"+123"
+const h = :"462+-"
