@@ -1,10 +1,10 @@
 const { Parser, tokTypes: tt } = require('babel-parser-utils')
-const { tokTypes: babelParserTokTypes } = require('@babel/parser')
 
 try {
   for (let i = 0; i < process.argv.length; i++) {
     const item = process.argv[i]
     if (item.includes('eslint')) {
+      const { tokTypes: babelParserTokTypes } = require('@babel/parser')
       Object.assign(babelParserTokTypes, tt)
       break
     }
