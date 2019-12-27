@@ -1,4 +1,5 @@
-const { Parser, tokTypes: tt } = require('babel-parser-utils')
+const { types: tt } = require('@babel/parser/lib/tokenizer/types')
+const { default: Parser } = require('@babel/parser/lib/parser')
 
 try {
   for (let i = 0; i < process.argv.length; i++) {
