@@ -57,10 +57,10 @@ class Example {
 ```
 
 ## Try it out!
-[Demo of babel-plugin-syntax-symbol@0.0.7](https://babeljs.io/repl#?browsers=&build=&builtIns=false&spec=false&loose=false&code_lz=MYewdgzgLgBAZiEMC8MBcBDARsAUKSWLDALxRgG9cYYBtNAEwFM4BdNGKAJwFcmYA_OgAe6dAE9cAX1xA&debug=false&forceAllTransforms=false&shippedProposals=false&circleciRepo=&evaluate=false&fileSize=false&timeTravel=false&sourceType=module&lineWrap=true&presets=es2015%2Cstage-2&prettier=false&targets=&version=7.7.4&externalPlugins=babel-plugin-syntax-symbol%400.0.7)
+[Demo of babel-plugin-syntax-symbol@0.0.7](https://babeljs.io/repl#?browsers=&build=&builtIns=false&spec=false&loose=false&code_lz=MYewdgzgLgBAZiEMC8MBcBDARsAUKSWLDAJxXQHIBqARgCYBmC_caGYgL3IG8YBtNABMApnAC6aGFBIBXYTAC-ufABsMECDACiADwwBbAA4r53XDH5p9ATwDK1_VhAqA0sOtiYACgCUMMxYWBBDOwgB0KiAA5l4UABbCKpEwAO4gJCqCFD7mirgKQA&debug=false&forceAllTransforms=false&shippedProposals=false&circleciRepo=&evaluate=false&fileSize=false&timeTravel=false&sourceType=module&lineWrap=true&presets=es2015%2Cstage-2&prettier=false&targets=&version=7.7.4&externalPlugins=babel-plugin-syntax-symbol%400.0.7)
 
 ## ESLint
-[Try to use with `babel-eslint@11.0.0-beta.1`.](https://github.com/babel/babel-eslint#breaking-change-in-v11xx)
+[Try to use with `babel-eslint@11.0.0-beta.1`](https://github.com/babel/babel-eslint#breaking-change-in-v11xx)
 
 ## Test
 
