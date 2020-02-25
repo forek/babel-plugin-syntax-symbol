@@ -1,6 +1,6 @@
 {
   "name": "babel-plugin-syntax-symbol",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Allow parsing of symbol literals like Ruby",
   "main": "index.js",
   "scripts": {

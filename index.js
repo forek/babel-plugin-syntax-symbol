@@ -38,7 +38,7 @@ class ColonSymbolParser extends Parser {
 }
 
 module.exports = function ({ types: t }) {
-  t.TYPES.push('ColonSymbolLiteral')
+  if (!t.TYPES.includes('ColonSymbolLiteral')) t.TYPES.push('ColonSymbolLiteral')
 
   return {
     parserOverride: (code, parserOpts = {}) => {
@@ -52,10 +52,7 @@ module.exports = function ({ types: t }) {
           ColonSymbolLiteral (path) {
             path.replaceWith(
               t.callExpression(
-                t.memberExpression(
-                  t.Identifier('Symbol'),
-                  t.Identifier('for')
-                ),
+                t.memberExpression(t.Identifier('Symbol'), t.Identifier('for')),
                 [t.stringLiteral(path.node.value)]
               )
             )
